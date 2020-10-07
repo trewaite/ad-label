@@ -1,11 +1,11 @@
-from flask import Flask
-from flask import render_template
+from flask import Flask, render_template, request, redirect, url_for
 from datetime import time
  
  
+
 app = Flask(__name__)
  
-@app.route("/line_chart")
+@app.route("/")
 def line_chart():
     legend = 'Temperatures'
     temperatures = [73.7, 73.4, 73.8, 72.8, 68.7, 65.2,
@@ -15,7 +15,13 @@ def line_chart():
              '1:00PM', '1:10PM', '1:20PM', '1:30PM', '1:40PM', '1:50PM',
              '2:00PM', '2:10PM', '2:20PM', '2:30PM', '2:40PM', '2:50PM']
     return render_template('chart.html', values=temperatures, labels=times, legend=legend)
- 
+
+@app.route('/', methods=['POST'])
+def upload_file():
+    uploaded_file = request.files['file']
+    if uploaded_file.filename != '':
+        uploaded_file.save(uploaded_file.filename)
+    return redirect(url_for('line_chart'))
 
 if __name__ == "__main__":
     app.run(debug=True)

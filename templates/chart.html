@@ -7,7 +7,14 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js'></script>
   </head>
   <body>
-    <h1>Temperature Sensor #1</h1>
+    <h1>Time Series Label</h1>
+
+    <h3>Upload Time Series</h3>
+    <form method="POST" action="" enctype="multipart/form-data">
+      <p><input type="file" name="file"></p>
+      <p><input type="submit" value="Submit"></p>
+    </form>
+
     <!-- bar chart canvas element -->
     <canvas id="myChart" width="600" height="400"></canvas>
     <p id="pointSelected">Point selected:</p>
