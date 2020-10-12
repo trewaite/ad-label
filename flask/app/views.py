@@ -1,10 +1,7 @@
-from flask import Flask, render_template, request, redirect, url_for
+from app import app
+from flask import render_template, request, redirect, url_for
 from datetime import time
- 
- 
-
-app = Flask(__name__)
- 
+  
 @app.route("/")
 def line_chart():
     legend = 'Temperatures'
@@ -22,6 +19,3 @@ def upload_file():
     if uploaded_file.filename != '':
         uploaded_file.save(uploaded_file.filename)
     return redirect(url_for('line_chart'))
-
-if __name__ == "__main__":
-    app.run(debug=True)
